@@ -1,8 +1,6 @@
-package org.example.weatherappkotlin
+package org.example.weatherappkotlin.data
 
-import android.util.Log
 import com.google.gson.Gson
-import data.ResponseClasses
 import java.net.URL
 
 /**
@@ -22,8 +20,8 @@ class ForecastRequest(val zipcode: String) {
         private val COMPLETE_URL = "$URL&APPID=$APP_ID&q="
     }
 
-    fun execute(): ResponseClasses.ForecastResult {
+    fun execute(): ForecastResult {
         val forecastJsonStr = URL(COMPLETE_URL + zipcode).readText()
-        return Gson().fromJson(forecastJsonStr, ResponseClasses.ForecastResult::class.java)
+        return Gson().fromJson(forecastJsonStr, ForecastResult::class.java)
     }
 }

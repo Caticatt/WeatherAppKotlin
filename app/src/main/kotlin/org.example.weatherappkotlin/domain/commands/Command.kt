@@ -1,6 +1,4 @@
-package domain
-
-import data.ResponseClasses
+package org.example.weatherappkotlin.domain.commands
 
 /**
  * Created by alexandra.ferreira on 12/4/17.
@@ -14,7 +12,7 @@ import data.ResponseClasses
 // because they can contain code. The first command needs to request the forecast to the API and
 // convert it to domain classes. This is the definition of the domain classes.
 
-public interface Command<T> {
+interface Command<T> {
 
     fun execute(): T
 
