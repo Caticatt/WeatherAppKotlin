@@ -7,7 +7,7 @@ package org.example.weatherappkotlin.data.db
 
 object CityForecastTable {
 
-    val NAME = "CityForecast"
+    val NAME = "DbClasses"
     val ID = "_id"
     val CITY = "city"
     val COUNTRY = "country"

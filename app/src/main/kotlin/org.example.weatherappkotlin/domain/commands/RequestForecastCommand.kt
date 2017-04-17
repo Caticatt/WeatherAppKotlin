@@ -1,7 +1,7 @@
 package org.example.weatherappkotlin.domain.commands
 
 
-import org.example.weatherappkotlin.data.ForecastRequest
+import org.example.weatherappkotlin.data.server.ForecastRequest
 import org.example.weatherappkotlin.domain.mappers.ForecastDataMapper
 import org.example.weatherappkotlin.domain.model.ForecastList
 

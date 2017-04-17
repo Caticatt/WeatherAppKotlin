@@ -1,7 +1,7 @@
 package org.example.weatherappkotlin.ui
 
 import android.app.Application
-import org.example.weatherappkotlin.ui.utils.DelegatesExt
+import org.example.weatherappkotlin.extensions.DelegatesExt
 
 /**
  * Created by alexandra.ferreira on 17/4/17.

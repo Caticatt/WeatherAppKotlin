@@ -1,4 +1,4 @@
-package org.example.weatherappkotlin.data
+package org.example.weatherappkotlin.data.server
 
 /**
  * Created by alexandra.ferreira on 12/4/17.

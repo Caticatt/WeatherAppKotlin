@@ -1,4 +1,4 @@
-package org.example.weatherappkotlin.ui.utils
+package org.example.weatherappkotlin.extensions
 
 import kotlin.reflect.KProperty
 

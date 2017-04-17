@@ -1,4 +1,4 @@
-package org.example.weatherappkotlin.ui.utils
+package org.example.weatherappkotlin.extensions
 
 import android.content.Context
 import android.view.View

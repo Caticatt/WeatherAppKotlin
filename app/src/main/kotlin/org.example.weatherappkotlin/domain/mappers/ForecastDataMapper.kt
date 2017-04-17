@@ -1,7 +1,7 @@
 package org.example.weatherappkotlin.domain.mappers
 
-import org.example.weatherappkotlin.data.Forecast
-import org.example.weatherappkotlin.data.ForecastResult
+import org.example.weatherappkotlin.data.server.Forecast
+import org.example.weatherappkotlin.data.server.ForecastResult
 import org.example.weatherappkotlin.domain.model.ForecastList
 import java.text.DateFormat
 import java.util.*

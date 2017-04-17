@@ -8,7 +8,7 @@ import android.widget.TextView
 import com.squareup.picasso.Picasso
 import org.example.weatherappkotlin.domain.model.Forecast
 import org.example.weatherappkotlin.domain.model.ForecastList
-import org.example.weatherappkotlin.ui.utils.ctx
+import org.example.weatherappkotlin.extensions.ctx
 import org.jetbrains.anko.find
 import kotlinx.android.synthetic.main.item_forecast.view.*
 
