@@ -9,7 +9,7 @@ import android.view.View
 
 
 // "Anko" provides a lot of extension functions to make Android coding simpler. It, for instance,
-// includes a ctx property for activities and fragments, among Making the forecast list clickable
+// includes a ctx property for activities and fragments, among. Making the forecast list clickable
 // others, which returns the context,  but it lacks of the same property for views. It’s a good
 // example of how to use extension properties.
 

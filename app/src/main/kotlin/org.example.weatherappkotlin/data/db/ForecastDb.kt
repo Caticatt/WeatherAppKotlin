@@ -1,8 +1,11 @@
 package org.example.weatherappkotlin.data.db
 
-import android.text.method.TextKeyListener.clear
 import org.example.weatherappkotlin.domain.model.ForecastList
-import org.jetbrains.anko.db.SelectQueryBuilder
+import org.example.weatherappkotlin.extensions.clear
+import org.example.weatherappkotlin.extensions.parseList
+import org.example.weatherappkotlin.extensions.parseOpt
+import org.example.weatherappkotlin.extensions.toVarargArray
+import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
 
 /**
@@ -15,6 +18,7 @@ class ForecastDb(val forecastDbHelper: ForecastDbHelper = ForecastDbHelper.insta
     fun requestForecastByZipCode(zipCode: Long, date: Long) = forecastDbHelper.use {
 
         val dailyRequest = "${DayForecastTable.CITY_ID} = ? AND ${DayForecastTable.DATE} >= ?"
+
         val dailyForecast = select(DayForecastTable.NAME)
                 .whereSimple(dailyRequest, zipCode.toString(), date.toString())
                 .parseList { DayForecast(HashMap(it)) }

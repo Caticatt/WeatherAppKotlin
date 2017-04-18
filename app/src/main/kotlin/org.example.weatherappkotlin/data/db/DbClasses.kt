@@ -1,8 +1,12 @@
 package org.example.weatherappkotlin.data.db
 
+import java.util.*
+
 /**
  * Created by alexandra.ferreira on 17/4/17.
  */
+
+
 class CityForecast(val map: MutableMap<String, Any?>, val dailyForecast: List<DayForecast>) {
     var _id: Long by map
     var city: String by map

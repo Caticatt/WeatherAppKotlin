@@ -23,5 +23,4 @@ class NotNullSingleValueVar<T>{
         else throw  IllegalStateException("${property.name}  already initialized")
     }
 
-
 }
