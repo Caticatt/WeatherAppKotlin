@@ -1,11 +1,9 @@
 package org.example.weatherappkotlin.data.db
 
 import org.example.weatherappkotlin.domain.datasource.ForecastDataSource
+import org.example.weatherappkotlin.domain.model.Forecast
 import org.example.weatherappkotlin.domain.model.ForecastList
-import org.example.weatherappkotlin.extensions.clear
-import org.example.weatherappkotlin.extensions.parseList
-import org.example.weatherappkotlin.extensions.parseOpt
-import org.example.weatherappkotlin.extensions.toVarargArray
+import org.example.weatherappkotlin.extensions.*
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
 
@@ -41,4 +39,14 @@ class ForecastDb(val forecastDbHelper: ForecastDbHelper = ForecastDbHelper.insta
             dailyForecast.forEach { insert(DayForecastTable.NAME, *it.map.toVarargArray()) }
         }
     }
+
+    override fun requestDayForecast(id: Long): Forecast? = forecastDbHelper.use {
+        val forecast = select(DayForecastTable.NAME).byId(id).
+                parseOpt {
+                    DayForecast(HashMap(it))
+                }
+        if (forecast != null) dataMapper.convertDayToDomain(forecast) else null
+    }
+
+
 }

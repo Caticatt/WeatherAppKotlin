@@ -14,8 +14,7 @@ ForecastProvider()) : Command<ForecastList> {
         val DAYS = 7
     }
 
-    override fun execute(): ForecastList {
-        return forecastProvider.requestForecastByZipCode(zipCode, DAYS)
-    }
+    override fun execute() = forecastProvider.requestForecastByZipCode(zipCode, DAYS)
+
 
 }

@@ -2,6 +2,7 @@ package org.example.weatherappkotlin.domain.datasource
 
 import org.example.weatherappkotlin.data.db.ForecastDb
 import org.example.weatherappkotlin.data.server.ForecastServer
+import org.example.weatherappkotlin.domain.model.Forecast
 import org.example.weatherappkotlin.domain.model.ForecastList
 import org.example.weatherappkotlin.extensions.firstResult
 
@@ -16,16 +17,17 @@ class ForecastProvider(val sources: List<ForecastDataSource> = ForecastProvider.
 
     }
 
-    fun requestForecastByZipCode(zipCode: Long, days: Int): ForecastList = sources.firstResult {
-        requestSource(it, days, zipCode)
+    fun requestForecastByZipCode(zipCode: Long, days: Int): ForecastList = requestToSources {
+        val res = it.requestForecastByZipCode(zipCode, todayTimeSpan())
+        if (res != null && res.size() >= days) res else null
     }
 
-    fun requestSource(source: ForecastDataSource, days: Int, zipCode: Long): ForecastList? {
-        val res = source.requestForecastByZipCode(zipCode, todayTimeSpan())
-        return if (res != null && res.size() >= days) res else null
-    }
+    fun requesForecast(id: Long): Forecast = requestToSources { it.requestDayForecast(id) }
 
     private fun todayTimeSpan() = System.currentTimeMillis() / DAY_IN_MILLIS * DAY_IN_MILLIS
 
+    private fun <T : Any> requestToSources(f: (ForecastDataSource) -> T?): T
+
+            = sources.firstResult { f(it) }
 
 }

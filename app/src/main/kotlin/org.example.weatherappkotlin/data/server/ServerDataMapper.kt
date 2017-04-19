@@ -3,7 +3,7 @@ package org.example.weatherappkotlin.data.server
 import org.example.weatherappkotlin.domain.model.ForecastList
 import java.util.*
 import java.util.concurrent.TimeUnit
-import org.example.weatherappkotlin.domain.model.ForecastList as ModelForecast
+import org.example.weatherappkotlin.domain.model.Forecast as ModelForecast
 
 /**
  * Created by alexandra.ferreira on 19/4/17.
@@ -20,9 +20,8 @@ class ServerDataMapper {
             convertForecastItemToDomain(forecast.copy(dt = dt))
         }
     }
-
     private fun convertForecastItemToDomain(forecast: Forecast) = with(forecast) {
-        ModelForecast(dt, weather[0].description, temp.max.toInt(), temp.min.toInt(),
+        ModelForecast(-1, dt, weather[0].description, temp.max.toInt(), temp.min.toInt(),
                 generateIconUrl(weather[0].icon))
     }
 

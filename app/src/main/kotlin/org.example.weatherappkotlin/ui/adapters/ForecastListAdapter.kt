@@ -12,6 +12,7 @@ import org.example.weatherappkotlin.extensions.ctx
 import java.text.DateFormat
 import java.util.*
 import kotlinx.android.synthetic.main.item_forecast.view.*
+import org.example.weatherappkotlin.extensions.toDateString
 
 
 /**
@@ -42,25 +43,11 @@ class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (Foreca
     override fun getItemCount(): Int = weekForecast.size()
 
     class ViewHolder(view: View, val itemClick: (Forecast) -> Unit) : RecyclerView.ViewHolder(view) {
-/*
-        private val iconView: ImageView
-        private val dateView: TextView
-        private val descriptionView: TextView
-        private val maxTemperatureView: TextView
-        private val minTemperatureView: TextView
-
-        init {
-            iconView = view.find(R.id.icon)
-            dateView = view.find(R.id.date)
-            descriptionView = view.find(R.id.description)
-            maxTemperatureView = view.find(R.id.maxTemperature)
-            minTemperatureView = view.find(R.id.minTemperature)
-        }*/
 
         fun bindForecast(forecast: Forecast) {
             with(forecast) {
                 Picasso.with(itemView.ctx).load(iconUrl).into(itemView.icon)
-                itemView.date.text = date
+                itemView.date.text = date.toDateString()
                 itemView.description.text = description
                 itemView.maxTemperature.text = "$high"
                 itemView.minTemperature.text = "$low"

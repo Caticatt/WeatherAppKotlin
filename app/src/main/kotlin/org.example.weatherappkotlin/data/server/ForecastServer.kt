@@ -2,6 +2,7 @@ package org.example.weatherappkotlin.data.server
 
 import org.example.weatherappkotlin.domain.datasource.ForecastDataSource
 import org.example.weatherappkotlin.data.db.ForecastDb
+import org.example.weatherappkotlin.domain.model.Forecast
 import org.example.weatherappkotlin.domain.model.ForecastList
 
 /**
@@ -16,4 +17,7 @@ ForecastDb = ForecastDb()) : ForecastDataSource {
         forecastDb.saveForecast(converted)
         return forecastDb.requestForecastByZipCode(zipCode, date)
     }
+
+    override fun requestDayForecast(id: Long): Forecast? = throw UnsupportedOperationException()
+
 }
