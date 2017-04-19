@@ -2,7 +2,7 @@ package org.example.weatherappkotlin.data.server
 
 import com.google.gson.Gson
 import org.example.weatherappkotlin.domain.datasource.ForecastDataSource
-import org.example.weatherappkotlin.data.db.ForecastDb
+import org.example.weatherappkotlin.data.db.Generics
 import java.net.URL
 
 /**

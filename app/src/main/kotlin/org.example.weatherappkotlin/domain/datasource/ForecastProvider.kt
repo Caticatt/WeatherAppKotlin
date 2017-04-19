@@ -1,6 +1,6 @@
 package org.example.weatherappkotlin.domain.datasource
 
-import org.example.weatherappkotlin.data.db.ForecastDb
+import org.example.weatherappkotlin.data.db.Generics
 import org.example.weatherappkotlin.data.server.ForecastServer
 import org.example.weatherappkotlin.domain.model.Forecast
 import org.example.weatherappkotlin.domain.model.ForecastList
@@ -13,13 +13,13 @@ class ForecastProvider(val sources: List<ForecastDataSource> = ForecastProvider.
 
     companion object {
         val DAY_IN_MILLIS = 1000 * 60 * 60 * 24
-        val SOURCES = listOf(ForecastDb(), ForecastServer())
+        val SOURCES = listOf(Generics(), ForecastServer())
 
     }
 
     fun requestForecastByZipCode(zipCode: Long, days: Int): ForecastList = requestToSources {
         val res = it.requestForecastByZipCode(zipCode, todayTimeSpan())
-        if (res != null && res.size() >= days) res else null
+        if (res != null && res.size >= days) res else null
     }
 
     fun requesForecast(id: Long): Forecast = requestToSources { it.requestDayForecast(id) }

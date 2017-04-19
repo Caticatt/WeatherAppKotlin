@@ -5,13 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
-import org.example.weatherappkotlin.R
+import kotlinx.android.synthetic.main.item_forecast.view.*
 import org.example.weatherappkotlin.domain.model.Forecast
 import org.example.weatherappkotlin.domain.model.ForecastList
 import org.example.weatherappkotlin.extensions.ctx
-import java.text.DateFormat
-import java.util.*
-import kotlinx.android.synthetic.main.item_forecast.view.*
 import org.example.weatherappkotlin.extensions.toDateString
 
 
@@ -31,16 +28,10 @@ class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (Foreca
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        //"with" is a useful function included in the standard Kotlin library. It basically receives an
-        // object and an extension function as parameters, and makes the object execute the function.
-        // This means that all the code we define inside the brackets acts as an extension function
-        // of the object we specify in the first parameter, and we can use all its public functions and
-        // properties.
         holder.bindForecast(weekForecast[position])
-
     }
 
-    override fun getItemCount(): Int = weekForecast.size()
+    override fun getItemCount() = weekForecast.size
 
     class ViewHolder(view: View, val itemClick: (Forecast) -> Unit) : RecyclerView.ViewHolder(view) {
 
@@ -49,8 +40,8 @@ class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (Foreca
                 Picasso.with(itemView.ctx).load(iconUrl).into(itemView.icon)
                 itemView.date.text = date.toDateString()
                 itemView.description.text = description
-                itemView.maxTemperature.text = "$high"
-                itemView.minTemperature.text = "$low"
+                itemView.maxTemperature.text = "${high}º"
+                itemView.minTemperature.text = "${low}º"
                 itemView.setOnClickListener { itemClick(this) }
             }
         }
