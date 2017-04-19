@@ -1,7 +1,8 @@
 package org.example.weatherappkotlin.data.server
 
 import com.google.gson.Gson
-import org.example.weatherappkotlin.data.server.ForecastResult
+import org.example.weatherappkotlin.domain.datasource.ForecastDataSource
+import org.example.weatherappkotlin.data.db.ForecastDb
 import java.net.URL
 
 /**
@@ -12,7 +13,7 @@ import java.net.URL
 //The implementation is really easy when using readText, an extension function from the Kotlin
 // standar library. This is not recommended for huge responses, but it will be enough in this case.
 
-class ForecastRequest(val zipcode: String) {
+class ForecastByZipCodeRequest(val zipcode: Long, val gson: Gson = Gson()) {
 
     companion object {
         private val APP_ID = "6a3c904b80779457bec537647fe0a260"
@@ -26,3 +27,4 @@ class ForecastRequest(val zipcode: String) {
         return Gson().fromJson(forecastJsonStr, ForecastResult::class.java)
     }
 }
+

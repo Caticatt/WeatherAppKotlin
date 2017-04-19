@@ -1,15 +1,16 @@
 package org.example.weatherappkotlin
 
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import com.squareup.picasso.Picasso
+import org.example.weatherappkotlin.R
 import org.example.weatherappkotlin.domain.model.Forecast
 import org.example.weatherappkotlin.domain.model.ForecastList
 import org.example.weatherappkotlin.extensions.ctx
-import org.jetbrains.anko.find
+import java.text.DateFormat
+import java.util.*
 import kotlinx.android.synthetic.main.item_forecast.view.*
 
 
@@ -23,10 +24,10 @@ import kotlinx.android.synthetic.main.item_forecast.view.*
 class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (Forecast) -> Unit) :
         RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.ctx).inflate(R.layout.item_forecast, parent, false)
+        return ViewHolder(view, itemClick)
     }
-
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //"with" is a useful function included in the standard Kotlin library. It basically receives an
@@ -34,14 +35,14 @@ class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (Foreca
         // This means that all the code we define inside the brackets acts as an extension function
         // of the object we specify in the first parameter, and we can use all its public functions and
         // properties.
-        holder.bindForecast(weekForecast.dailyForecast[position])
+        holder.bindForecast(weekForecast[position])
 
     }
 
     override fun getItemCount(): Int = weekForecast.size()
 
     class ViewHolder(view: View, val itemClick: (Forecast) -> Unit) : RecyclerView.ViewHolder(view) {
-
+/*
         private val iconView: ImageView
         private val dateView: TextView
         private val descriptionView: TextView
@@ -54,7 +55,7 @@ class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (Foreca
             descriptionView = view.find(R.id.description)
             maxTemperatureView = view.find(R.id.maxTemperature)
             minTemperatureView = view.find(R.id.minTemperature)
-        }
+        }*/
 
         fun bindForecast(forecast: Forecast) {
             with(forecast) {
@@ -66,10 +67,5 @@ class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (Foreca
                 itemView.setOnClickListener { itemClick(this) }
             }
         }
-    }
-
-    interface OnItemClickListener {
-
-        operator fun invoke(forecast: Forecast)
     }
 }

@@ -1,4 +1,4 @@
-package org.example.weatherappkotlin.domain.mappers
+package org.example.weatherappkotlin.domain.datasource
 
 import org.example.weatherappkotlin.data.server.Forecast
 import org.example.weatherappkotlin.data.server.ForecastResult
